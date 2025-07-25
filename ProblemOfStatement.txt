@@ -1,0 +1,39 @@
+🧠 What is the Producer-Consumer Problem?
+The Producer-Consumer problem is a classic example of a multi-threading synchronization problem where:
+
+One or more Producer threads generate data and put it into a shared buffer.
+
+One or more Consumer threads take data from that buffer and process it.
+
+The buffer has limited capacity, so the producer must wait if the buffer is full, and the consumer must wait if it is empty.
+
+
+
+🎯 Goal
+Ensure that producers don’t produce when the buffer is full.
+
+Ensure that consumers don’t consume when the buffer is empty.
+
+Ensure that only one thread accesses the buffer at a time to prevent race conditions.
+
+
+
+⚠️ Problems That Can Arise Without Synchronization
+Race Conditions – Multiple threads accessing or modifying the buffer simultaneously can corrupt data.
+
+Deadlock – Threads wait forever if locks are not properly released.
+
+Data Loss or Overwrite – Producer may overwrite unconsumed data or consumer may consume nothing.
+
+🔐 Your approach should be 
+Producer Thread:
+  while (true):
+    - wait if buffer is full
+    - else produce item and notify consumer
+
+Consumer Thread:
+  while (true):
+    - wait if buffer is empty
+    - else consume item and notify producer
+
+
